@@ -41,13 +41,14 @@ var Mymap = L.map("map", {
 
 }).setView([48.5, 19.5], 1);
 
-var basemaps = {
-    "III. vojenské mapovanie": L.tileLayer.wms(
+//basemaps
+var baseMaps = {
+    /*"III. vojenské mapovanie": L.tileLayer.wms(
         "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
         {
             layers: "1,2,3",
         }
-    ),
+    ),*/
     "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
         {
             layers: "1,2,3",
@@ -59,18 +60,27 @@ var basemaps = {
         {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
         }
+    )};
+
+var overlayMaps = {
+    "III. vojenské mapovanie": L.tileLayer.wms(
+        "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
+        {
+            layers: "1,2,3",
+        }
     ),
+};
 
     /* "skuska": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
      {
          layers: "Katastrálna mapa",
      })*/
 
-};
-var layerControl = L.control
-layerControl.layers(basemaps).addTo(Mymap);
-//layerControl.addOverlay(tileLayer , "ortofoto");
-Mymap.addLayer(basemaps["podkladova mapa"]);
+
+var layerControl = L.control;
+layerControl.layers(baseMaps, overlayMaps).addTo(Mymap);
+//layerControl.addOverlay(overlayMaps["III. vojenské mapovanie"]);
+Mymap.addLayer(baseMaps["podkladova mapa"]);
 
 
 //scale
