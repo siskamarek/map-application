@@ -39,7 +39,7 @@ var krovakCrs = new L.Proj.CRS(
 
 var Mymap = L.map("map", {
 
-}).setView([48.5, 19.5], 1);
+}).setView([48.5, 19.5], 8);
 
 //basemaps
 var baseMaps = {
@@ -49,12 +49,12 @@ var baseMaps = {
             layers: "1,2,3",
         }
     ),*/
-    "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
-        {
-            layers: "1,2,3",
-        }
+    // "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
+    //     {
+    //         layers: "1,2,3",
+    //     }
 
-    ),
+    // ),
 
     "podkladova mapa": L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=l6LE501kztQbg1HaKhEg",
         {
@@ -64,11 +64,19 @@ var baseMaps = {
 
 var overlayMaps = {
     "III. vojenské mapovanie": L.tileLayer.wms(
-        "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
-        {
-            layers: "1,2,3",
-        }
+      "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
+      {
+          layers: "1,2,3",
+          format: 'image/png',
+          transparent: true
+      }
     ),
+    "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
+    {
+        layers: "1,2,3",
+        format: 'image/png',
+        transparent: true
+    }),
 };
 
     /* "skuska": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
@@ -77,11 +85,54 @@ var overlayMaps = {
      })*/
 
 
-var layerControl = L.control;
-layerControl.layers(baseMaps, overlayMaps).addTo(Mymap);
+L.control.layers(baseMaps).addTo(Mymap);
+L.control.layers(overlayMaps).addTo(Mymap);
 //layerControl.addOverlay(overlayMaps["III. vojenské mapovanie"]);
 Mymap.addLayer(baseMaps["podkladova mapa"]);
+
+let selectedBase = null;
+Mymap.on('baselayerchange', (e) => {
+  if (!Object.hasOwnProperty.call(overlayMaps, e.name)) {
+    return;
+  }
+
+  selectedBase = overlayMaps[e.name];
+});
 
 
 //scale
 L.control.scale().addTo(Mymap);
+
+// Measure plugin
+// @see https://github.com/aprilandjan/leaflet.measure
+L.control.measure({
+  //  control position
+  position: 'topleft',
+  //  weather to use keyboard control for this plugin
+  keyboard: true,
+  //  shortcut to activate measure
+  activeKeyCode: 'M'.charCodeAt(0),
+  //  shortcut to cancel measure, defaults to 'Esc'
+  cancelKeyCode: 27,
+  //  line color
+  lineColor: 'red',
+  //  line weight
+  lineWeight: 2,
+  //  line dash
+  lineDashArray: '6, 6',
+  //  line opacity
+  lineOpacity: 1,
+  //  distance formatter
+  // formatDistance: function (val) {
+  //   return Math.round(1000 * val / 1609.344) / 1000 + 'mile';
+  // }
+}).addTo(Mymap);
+
+document.querySelector('#opacity').addEventListener('change', (e) => {
+  if (!selectedBase) {
+    return;
+  }
+
+  const opacity = e.target.value;
+  selectedBase.setOpacity(opacity);
+});
