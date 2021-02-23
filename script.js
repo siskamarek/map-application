@@ -1,9 +1,4 @@
-/*var map = L.map('map').setView([49.2, 18], 7);
-L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=l6LE501kztQbg1HaKhEg' , 
-{
-    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
-}).addTo(map);*/
-
+//crs-krovak
 var krovakCrs = new L.Proj.CRS(
     "EPSG:5514",
     "+proj=krovak +lat_0=49.5 +lon_0=24.83333333333333 +alpha=30.28813972222222 +k=0.9999 +x_0=0 +y_0=0 +ellps=bessel +towgs84=589,76,480,0,0,0,0 +units=m +no_defs",
@@ -43,40 +38,55 @@ var Mymap = L.map("map", {
 
 //basemaps
 var baseMaps = {
-    /*"III. vojenské mapovanie": L.tileLayer.wms(
-        "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
-        {
-            layers: "1,2,3",
-        }
-    ),*/
-    // "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
-    //     {
-    //         layers: "1,2,3",
-    //     }
-
-    // ),
-
+    
     "podkladova mapa": L.tileLayer("https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=l6LE501kztQbg1HaKhEg",
         {
             attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
         }
-    )};
+    ),
+    "ortofoto - UGKK": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
+    {
+        layers: "1,2,3",
+        format: 'image/png',
+        transparent: true,
+    }),
+    "ortofoto - Mapy.cz": L.tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}")
+};
+//layers
+var overlays = {
+    "Nazvoslovie": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_geograficke_nazvoslovie_wms/service.svc/get",
+    {
+        layers: "0,1,2,3,4,5",
+        format: 'image/png',
+        transparent: true,
 
+    
+    }),
+    "parcely C" : L.tileLayer.wms("https://kataster.skgeodesy.sk/eskn/services/NR/kn_wms_norm/MapServer/WmsServer?",
+    {
+        layers: "2,3,4,5,6,7,8,11,12,13,14,15",
+        format: 'image/png',
+        transparent: true,
+    }),
+    "parcely E" : L.tileLayer.wms("https://kataster.skgeodesy.sk/eskn/services/NR/uo_wms_norm/MapServer/WmsServer?",
+    {
+        layers: "0,3,4,5",
+        format: 'image/png',
+        transparent: true,
+    })
+}
+//overlaymaps
 var overlayMaps = {
     "III. vojenské mapovanie": L.tileLayer.wms(
       "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
       {
           layers: "1,2,3",
           format: 'image/png',
-          transparent: true
+          transparent: true,
+                             
       }
     ),
-    "ortofoto": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
-    {
-        layers: "1,2,3",
-        format: 'image/png',
-        transparent: true
-    }),
+    
 };
 
     /* "skuska": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
@@ -84,9 +94,10 @@ var overlayMaps = {
          layers: "Katastrálna mapa",
      })*/
 
-
-L.control.layers(baseMaps).addTo(Mymap);
+L.control.layers(baseMaps, overlays).addTo(Mymap);
 L.control.layers(overlayMaps).addTo(Mymap);
+//L.control.layers(overlays).addTo(Mymap);
+
 //layerControl.addOverlay(overlayMaps["III. vojenské mapovanie"]);
 Mymap.addLayer(baseMaps["podkladova mapa"]);
 
@@ -101,7 +112,8 @@ Mymap.on('baselayerchange', (e) => {
 
 
 //scale
-L.control.scale().addTo(Mymap);
+var scale = L.control.scale().addTo(Mymap);
+
 
 // Measure plugin
 // @see https://github.com/aprilandjan/leaflet.measure
