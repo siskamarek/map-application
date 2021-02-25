@@ -89,16 +89,11 @@ var overlayMaps = {
     
 };
 
-    /* "skuska": L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
-     {
-         layers: "Katastrálna mapa",
-     })*/
-
+   
 L.control.layers(baseMaps, overlays).addTo(Mymap);
 L.control.layers(overlayMaps).addTo(Mymap);
-//L.control.layers(overlays).addTo(Mymap);
 
-//layerControl.addOverlay(overlayMaps["III. vojenské mapovanie"]);
+
 Mymap.addLayer(baseMaps["podkladova mapa"]);
 
 let selectedBase = null;
@@ -140,6 +135,7 @@ L.control.measure({
   // }
 }).addTo(Mymap);
 
+//opacity tool
 document.querySelector('#opacity').addEventListener('change', (e) => {
   if (!selectedBase) {
     return;
@@ -148,3 +144,29 @@ document.querySelector('#opacity').addEventListener('change', (e) => {
   const opacity = e.target.value;
   selectedBase.setOpacity(opacity);
 });
+//point tool
+function myfunc(){
+    var x = document.getElementById("lat").value;
+    var y = document.getElementById("long").value;
+    //var form = document.getElementById('input');
+    var marker = L.marker([x,y]).addTo(Mymap)
+    .bindPopup('lat'+x+ '<br>long ='+y)
+    .openPopup();
+    document.getElementById("lat").value="";
+    document.getElementById("long").value="";
+
+    Mymap.setView([x, y], 15);
+    
+         
+ };
+//enter - nefunguje !
+ var inputText = document.getElementById("input");
+    inputText.addEventListener("keydown", function(event) {
+        if (event.activeKeyCode === "Enter") {
+           event.preventDefault();
+           document.getElementById("button").click();
+        }
+     });
+   
+    
+   
