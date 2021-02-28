@@ -53,6 +53,7 @@ var overlays = {
       transparent: true,
     }
   ),
+  "II. vojenské mapovanie":L.tileLayer("http://tiles.geop.sazp.sk/base/service")
 };
 
 function getLayers() {
