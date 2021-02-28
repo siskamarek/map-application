@@ -1,0 +1,39 @@
+#map
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#controls {
+    position: absolute;
+    background: white;
+    bottom: 2rem;
+    right: 1rem;
+    padding: 1rem;
+    z-index: 2;
+    border-radius: 0.25rem;
+    border: 2px solid rgb(0 0 0 / 25%);
+    box-shadow: 0 0 2px rgb(0 0 0 / 25%);
+}
+
+#input {
+    position: absolute;
+    background: white;
+    top: 1rem;
+    left: 3rem;
+    padding: 0.5rem;
+    z-index: 2;
+    border-radius: 0.25rem;
+    border: 2px solid rgb(0 0 0 / 25%);
+    box-shadow: 0 0 2px rgb(0 0 0 / 25%);
+    display:flex;
+    
+}
+#lat {
+    margin-right: 1rem;
+}
+

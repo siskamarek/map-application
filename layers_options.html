@@ -44,10 +44,47 @@
       <button type="submit" id="button" onclick="setView()">Submit</button>
     </form>
 
-    <<!--<div id="layersOptions">
-      <button id="layerButton"><a href="layers_options.html">Layers</a></button>
-      <i class="fas fa-layer-group"></i>
-    </div>-->>
+    <div id=layers>
+        <i id= "skip" class="fas fa-times"><a href="index.html"></a></i>
+      <ul id=baselyers>
+        <h3>Podkladove mapy:</h3>
+        <li>
+           <p class="layerbutton" onclick="setLayer()">Open street map</p>
+       <!----<button  class="vrstva" type="button" onclick= "setLayer()">Open street map</button>-->
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">Orthophoto (UGKK)</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">Orthophoto (Mapy.CZ)</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">Orthophoto (Mapy.CZ)</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">Orthophoto (Mapy.CZ)</p>
+        </li>
+        <hr>
+        <h3>Historicke mapy</h3>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">I. vojenske mapovanie</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">II. vojenske mapovanie</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">III. vojenske mapovanie</p>
+        </li>
+        <li>
+          <p class="layerbutton" onclick="setLayer()">IV. vojenske mapovanie</p>
+        </li>
+        <i id="options" class="fas fa-bars" ></i>
+
+      </ul>
+
+
+
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
