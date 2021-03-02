@@ -17,6 +17,8 @@ var basemaps = {
   mapyCZ: L.tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}"),
 
   SAZP: L.tileLayer("http://tiles.geop.sazp.sk/base/service?"),
+
+  orto2017: L.tileLayer("https://ofmozaika.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
 };
 
 var overlays = {
@@ -53,7 +55,19 @@ var overlays = {
       transparent: true,
     }
   ),
-  "II. vojenské mapovanie":L.tileLayer("http://tiles.geop.sazp.sk/base/service")
+  "II. vojenské mapovanie":L.tileLayer("http://tiles.geop.sazp.sk/base/service",
+  {
+    dpiMode: 7,
+    format: 'image/png',
+    layers: "sazp_vojenske_mapovanie_II",
+  }),
+
+  "IV. vojenské mapovanie":L.tileLayer("https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
+  {
+    layers: "1",
+    format: 'image/png',
+    transparent: true,
+  }),
 };
 
 function getLayers() {

@@ -58,12 +58,16 @@
     display: block;
     cursor: pointer;
     box-sizing: 100%;
-
-    
+       
 }
 .layerbutton:hover{
-   background-color:rgb(186 213 232 / 25%);
+   background-color:rgb(186 213 232 / 50%);
     
+}
+
+.layerbutton:active:{
+    content: 'after';
+    color: blue;
 }
 
 

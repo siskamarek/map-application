@@ -29,52 +29,55 @@
     <script src="app/controls/opacity.js"></script>
     <script src="app/controls/setView.js"></script>
     <script src="app/controls/layerControl.js"></script>
+    
   </head>
   <body>
     <div id="map"></div>
     
     <form action="/" id="input">
-      <label for="lat">latitude</label>
-      <input type="text" id="lat" name="lat" /><br />
-      <label for="long">longitude</label><br />
-      <input type="text" id="long" name="long" /><br />
-      <button type="submit" id="button" onclick="setView()">Submit</button>
+            <label for="lat">latitude</label>
+            <input type="text" id="lat" name="lat" autocomplete="off"><br>
+            <label for="long">longitude</label><br>
+            <input type="text" id="long" name="long" autocomplete="off"><br>
+            <button  id='button' onclick="setView()">Submit</button>
     </form>
 
     <div id=layers onmouseout="toggleHidden('#uldiv')" onmouseover="toggleHidden('#uldiv')">
-      <!--<i class="fas fa-arrow-down"></i>-->
-        <i id= "skip" class="fas fa-arrow-down"  ></i>
-      <div id=uldiv hidden>
-      <ul id="baselyers">
-        <h3>Podkladove mapy:</h3>
-        <li>
-           <p class="layerbutton" onclick="setLayer('maptiler')">Open street map</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer('SAZP')">SAZP</p>
-        </li>
+      <i id= "skip" class="fas fa-arrow-down"  ></i>
+        <div id=uldiv hidden>
+          <ul id="baselyers">
+            <h3>Podkladove mapy:</h3>
+              <li>
+                <p class="layerbutton" onclick="setLayer('maptiler')">Open street map</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer('SAZP')">SAZP</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
+              </li>
         
-        <hr>
-        <h3>Historicke mapy</h3>
-        <li>
-          <p class="layerbutton" onclick="setLayer()">I. vojenske mapovanie</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer()">II. vojenske mapovanie</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer()">III. vojenske mapovanie</p>
-        </li>
-        <li>
-          <p class="layerbutton" onclick="setLayer()">IV. vojenske mapovanie</p>
-        </li>
-        <i id="options" class="fas fa-bars" onclick="toggleHidden('#optionsContainer')"></i>
+              <hr>
+              <h3>Historicke mapy</h3>
+              <li>
+                <p class="layerbutton" onclick="setLayer()">I. vojenske mapovanie</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer()">II. vojenske mapovanie</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer()">III. vojenske mapovanie</p>
+              </li>
+              <li>
+                <p class="layerbutton" onclick="setLayer()">IV. vojenske mapovanie</p>
+              </li>
+              <i id="options" class="fas fa-bars" onclick="toggleHidden('#optionsContainer')"></i>
 
         <div id="optionsContainer" class="options" hidden>
             <p>
@@ -107,5 +110,6 @@
 
     </div>
     <script src="script.js"></script>
+    <script src="app/controls/opacity.js"></script>
   </body>
 </html>

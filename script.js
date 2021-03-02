@@ -1,4 +1,5 @@
 createMap();
+
 var layer;
 function setLayer(layerName){
    
