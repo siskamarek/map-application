@@ -29,17 +29,18 @@
     <script src="app/controls/opacity.js"></script>
     <script src="app/controls/setView.js"></script>
     <script src="app/controls/layerControl.js"></script>
-    
+    <script src="app/controls/myLayerControl.js"></script>
+        
   </head>
   <body>
     <div id="map"></div>
     
-    <form action="/" id="input">
-            <label for="lat">latitude</label>
+    <form action="/" id="input" onsubmit="handleSetView(event)">
+            <label for="lat">Latitude</label>
             <input type="text" id="lat" name="lat" autocomplete="off"><br>
-            <label for="long">longitude</label><br>
+            <label for="long">Longitude</label><br>
             <input type="text" id="long" name="long" autocomplete="off"><br>
-            <button  id='button' onclick="setView()">Submit</button>
+            <input type="submit" value="Submit">
     </form>
 
     <div id=layers onmouseout="toggleHidden('#uldiv')" onmouseover="toggleHidden('#uldiv')">
@@ -48,19 +49,19 @@
           <ul id="baselyers">
             <h3>Podkladove mapy:</h3>
               <li>
-                <p class="layerbutton" onclick="setLayer('maptiler')">Open street map</p>
+                <p class="layerbutton" id="maptiler" onclick="setLayer('maptiler')">Open street map</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
+                <p class="layerbutton" id="orthoUGKK" onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
+                <p class="layerbutton" id="mapyCZ" onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('SAZP')">SAZP</p>
+                <p class="layerbutton" id="SAZP" onclick="setLayer('SAZP')">Orto 2010</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
+                <p class="layerbutton" id="orto2017" onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
               </li>
         
               <hr>
@@ -82,20 +83,32 @@
         <div id="optionsContainer" class="options" hidden>
             <p>
               <label>
-                <input type="checkbox" value="layer1" onchange="getSelectedValues('#optionsContainer')" />
+                <input type="checkbox" value="Nazvoslovie" onchange="getSelectedValues('#optionsContainer')" />
                 Geografické názvoslovie
               </label>
             </p>
             <p>
               <label>
-                <input type="checkbox" value="layer2" onchange="getSelectedValues('#optionsContainer')" />
+                <input type="checkbox" value="ParcelyC" onchange="getSelectedValues('#optionsContainer')" />
                 Parcely C
               </label>
             </p>
             <p>
               <label>
-                <input type="checkbox" value="layer3" onchange="getSelectedValues('#optionsContainer')" />
+                <input type="checkbox" value="ParcelyE" onchange="getSelectedValues('#optionsContainer')" />
                Parcely E
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" value="Lidar" onchange="getSelectedValues('#optionsContainer')" />
+               Tieňovaný model (Lidar)
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" value="ESRI" onchange="getSelectedValues('#optionsContainer')" />
+               Tieňovaný model (Global)
               </label>
             </p>
             <div id="controls">

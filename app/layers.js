@@ -16,13 +16,19 @@ var basemaps = {
   ),
   mapyCZ: L.tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}"),
 
-  SAZP: L.tileLayer("http://tiles.geop.sazp.sk/base/service?"),
+  SAZP: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service?",
+  {
+    layers: "ortofoto_2010",
+    format:"image/png",
+    transparent: true,
+  }),
 
   orto2017: L.tileLayer("https://ofmozaika.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
 };
 
 var overlays = {
   Lidar: L.tileLayer("https://dmr5.tiles.freemap.sk/{z}/{x}/{y}.png"),
+
   Nazvoslovie: L.tileLayer.wms(
     "https://zbgisws.skgeodesy.sk/zbgis_geograficke_nazvoslovie_wms/service.svc/get",
     {
@@ -31,7 +37,8 @@ var overlays = {
       transparent: true,
     }
   ),
-  "parcely C": L.tileLayer.wms(
+
+  ParcelyC: L.tileLayer.wms(
     "https://kataster.skgeodesy.sk/eskn/services/NR/kn_wms_norm/MapServer/WmsServer?",
     {
       layers: "2,3,4,5,6,7,8,11,12,13,14,15",
@@ -39,13 +46,23 @@ var overlays = {
       transparent: true,
     }
   ),
-  "parcely E": L.tileLayer.wms(
+
+  ParcelyE: L.tileLayer.wms(
     "https://kataster.skgeodesy.sk/eskn/services/NR/uo_wms_norm/MapServer/WmsServer?",
     {
       layers: "0,3,4,5",
       format: "image/png",
       transparent: true,
     }
+  ),
+
+  ESRI: L.tileLayer(
+      "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/0",
+      {
+        layers: "World Hillshade",
+        format: "image/png",
+        transparent: true,
+      }
   ),
   "III. vojenské mapovanie": L.tileLayer.wms(
     "https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",

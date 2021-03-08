@@ -1,20 +1,25 @@
 var marker;
 
 //point tool
-function setView() {
+function handleSetView(event) {
+  event.preventDefault();
   if (marker) {
-    // marker.delete();
-  }
+    getMap().removeLayer(marker)
+  };
+ 
   var x = document.getElementById("lat").value;
-  var y = document.getElementById("long").value;
-  //var form = document.getElementById('input');
+  var y = document.getElementById("long").value; 
+
   var map = getMap();
+
   marker = L.marker([x, y])
     .addTo(map)
-    .bindPopup("lat" + x + "<br>long =" + y)
+    .bindPopup("Latitude = " + x + "°" + "<br>Longitude = " + y + "°" )
     .openPopup();
+
   document.getElementById("lat").value = "";
   document.getElementById("long").value = "";
 
-  map.setView([x, y], 15);
+  map.setView([x, y], 10);
+  
 }
