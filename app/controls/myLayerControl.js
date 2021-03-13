@@ -1,7 +1,8 @@
 //baselayers
 var activelayer;
 function setLayer(layerName){
-    //document.getElementById(layerName).id="layerName";
+   
+   //document.getElementById(layerName).id=("unselected");
     if(activelayer!=null && activelayer!=''){map.removeLayer(activelayer)};
     activelayer=basemaps[layerName];
     //document.getElementById(layerName).id = ("selected");
@@ -58,10 +59,11 @@ function toggleHidden(selector) {
 
 
  function onControlChange(event){
+   const id = event.target.value;
    const checked = event.target.checked;
-   if(checked){document.getElementById("controls").hidden=false}
+   if(checked){document.getElementById(id).hidden=false}
    else{
-      document.getElementById("controls").hidden=true;
+      document.getElementById(id).hidden=true;
    };
 }
 
@@ -74,5 +76,5 @@ function toggleHidden(selector) {
         };
      };
    
-
+document.addEventListener('DOMContentLoaded', setControl);
    

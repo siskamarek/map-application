@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="lib/leaflet.measure.css" />
     <script src="lib/leaflet.measure.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="timeLine_style.css">
     <script src="app/map.js"></script>
     <script src="app/crs.js"></script>
     <script src="app/layers.js"></script>
@@ -49,34 +50,34 @@
           <ul id="baselyers">
             <h3>Podkladove mapy:</h3>
               <li>
-                <p class="layerbutton" id="maptiler" onclick="setLayer('maptiler')">Open street map</p>
+                <p class="layerbutton"  onclick="setLayer('maptiler')">Open street map</p>
               </li>
               <li>
-                <p class="layerbutton" id="orthoUGKK" onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
+                <p class="layerbutton"  onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
               </li>
               <li>
-                <p class="layerbutton" id="mapyCZ" onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
+                <p class="layerbutton"  onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
               </li>
               <li>
-                <p class="layerbutton" id="SAZP" onclick="setLayer('SAZP')">Orto 2010</p>
+                <p class="layerbutton"  onclick="setLayer('SAZP')">Orto 2010</p>
               </li>
               <li>
-                <p class="layerbutton" id="orto2017" onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
+                <p class="layerbutton"  onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
               </li>
         
               <hr>
               <h3>Historicke mapy</h3>
               <li>
-                <p class="layerbutton" onclick="setLayer()">I. vojenske mapovanie</p>
+                <p class="layerbutton" onclick="setLayer('IVM')">I. vojenske mapovanie</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer()">II. vojenske mapovanie</p>
+                <p class="layerbutton" onclick="setLayer('IIVM')">II. vojenske mapovanie</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer()">III. vojenske mapovanie</p>
+                <p class="layerbutton"  onclick="setLayer('IIIVM')">III. vojenske mapovanie</p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer()">IV. vojenske mapovanie</p>
+                <p class="layerbutton" onclick="setLayer('IVVM')">IV. vojenske mapovanie</p>
               </li>
               <i id="options" class="fas fa-bars" onclick="toggleHidden('#optionsContainer')"></i>
 
@@ -114,10 +115,15 @@
             <hr>
             <p>
               <label>
-                <input class="control" type="checkbox" value="Opacity" onchange="setControl()" />
+                <input class="control" type="checkbox" value="controls" onchange="setControl()" />
                Opacity
               </label>
             </p>
+            <label>
+              <input class="control" type="checkbox" value="timeline" onchange="setControl()" />
+             Timeline
+            </label>
+          </p>
           </div>
       </ul>
     </div>
@@ -131,7 +137,16 @@
       <label for="volume">Opacity</label>
     </div>
 
+    <div id="timeline" hidden >
+      <input type="range" id="slider" name="range" min="0" max="100" value="0" step="10">
+      <div id="selector">
+        <div id="selectValue"></div>
+        <div id="selectBtn"></div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
     <script src="app/controls/opacity.js"></script>
+    <script src="app/controls/timeline.js"></script>
   </body>
 </html>

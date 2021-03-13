@@ -5,7 +5,7 @@ function createMap() {
   var layers = getLayers();
 
   map.addLayer(layers.basemaps.maptiler);
-  createLayerControl(layers);
+  //createLayerControl(layers);
 
   L.control.scale().addTo(map);
   createMeasureTool();

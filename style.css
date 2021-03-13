@@ -23,8 +23,8 @@
 #input {
     position: absolute;
     background: white;
-    top: 1rem;
-    left: 3rem;
+    top: 1.5rem;
+    left: 5rem;
     padding: 0.5rem;
     z-index: 3;
     border-radius: 0.25rem;
@@ -52,8 +52,8 @@
 #layers{
     position: absolute;
     background: rgb(64 186 200 / 100%);
-    top: 2rem;
-    right:1rem;
+    top: 1.5rem;
+    right:2rem;
     padding: 0px;
     z-index: 2;
     border-radius: 0.25rem;
@@ -77,9 +77,9 @@
     
 }
 
-.layerbutton:active:{
-    content: 'after';
-    color: blue;
+.layerbutton:focus{
+    
+    color: rgb(255, 0, 106);
 }
 
 
