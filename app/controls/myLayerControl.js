@@ -2,14 +2,13 @@
 var activelayer;
 function setLayer(layerName){
    
-   //document.getElementById(layerName).id=("unselected");
-    if(activelayer!=null && activelayer!=''){map.removeLayer(activelayer)};
-    activelayer=basemaps[layerName];
-    //document.getElementById(layerName).id = ("selected");
-    var baseLayer = basemaps.maptiler;
-    var baseMap = L.layerGroup([baseLayer, activelayer]);
-    map.addLayer(baseMap);
-    
+   if(activelayer!=null && activelayer!=''){
+      map.removeLayer(activelayer)
+   };
+      activelayer=basemaps[layerName];
+      var baseLayer = basemaps.maptiler;
+      var baseMap = L.layerGroup([baseLayer, activelayer]);
+      map.addLayer(baseMap);
    };
    
 
@@ -61,11 +60,14 @@ function toggleHidden(selector) {
  function onControlChange(event){
    const id = event.target.value;
    const checked = event.target.checked;
-   if(checked){document.getElementById(id).hidden=false}
+   const timeline = document.getElementById("timeline");
+   if(checked){
+      document.getElementById(id).hidden=false;
+   }
    else{
       document.getElementById(id).hidden=true;
    };
-}
+  }
 
  function setControl (){
    
@@ -75,6 +77,5 @@ function toggleHidden(selector) {
         control.addEventListener('change', onControlChange)
         };
      };
-   
-document.addEventListener('DOMContentLoaded', setControl);
-   
+     document.addEventListener('DOMContentLoaded', setControl);
+     

@@ -6,6 +6,17 @@ var basemaps = {
         '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     }
   ),
+  GoogleMaps: L.tileLayer("http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"),
+
+  bing: L.tileLayer("http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1"),
+
+  ZBGISmap: L.tileLayer("https://zbgisws.skgeodesy.sk/zbgis_wmts_new/service.svc/get?", {
+    format: "image/png",
+    transparent: true,
+  }),
+
+  freeMap: L.tileLayer("https://outdoor.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
+
   orthoUGKK: L.tileLayer.wms(
     "https://zbgisws.skgeodesy.sk/zbgis_ortofoto_wms/service.svc/get",
     {
@@ -23,7 +34,18 @@ var basemaps = {
     transparent: true,
   }),
 
-  orto2017: L.tileLayer("https://ofmozaika.tiles.freemap.sk/{z}/{x}/{y}.jpg"),
+  orto2017: L.tileLayer("https://ofmozaika.tiles.freemap.sk/{z}/{x}/{y}.jpg",
+  {
+    format: "image/png",
+    transparent: true,
+  }),
+
+  ZM: L.tileLayer.wms("https://zbgisws.skgeodesy.sk/ZMSR_wms/service.svc/get",
+  {
+    layers: "1,2,3",
+    format: "image/png",
+    transparent: true,
+  }),
 
   IVM: '',
 
@@ -54,6 +76,13 @@ var basemaps = {
 
 
 var overlays = {
+  DMR: L.tileLayer.wms("https://zbgisws.skgeodesy.sk/zbgis_dmr3_wms/service.svc/get",
+  {
+    layers: "0,1,2",
+    format: "image/png",
+    transparent: true,
+  }),
+
   Lidar: L.tileLayer("https://dmr5.tiles.freemap.sk/{z}/{x}/{y}.png"),
 
   Nazvoslovie: L.tileLayer.wms(

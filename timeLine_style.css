@@ -33,7 +33,7 @@
     left: 0%;
     transform: translateX(-50%);
     z-index: 2 ;
-    cursor: pointer;
+   
 }
 #selectBtn {
     height: 48px;
@@ -55,7 +55,7 @@
     border-radius: 4px;
     text-align: center;
     line-height: 45px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -68,3 +68,4 @@
     bottom: -16px;
     left: 0;
 }
+

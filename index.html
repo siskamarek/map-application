@@ -47,26 +47,52 @@
     <div id=layers onmouseout="toggleHidden('#uldiv')" onmouseover="toggleHidden('#uldiv')">
       <i id= "skip" class="fas fa-arrow-down"  ></i>
         <div id=uldiv hidden>
-          <ul id="baselyers">
-            <h3>Podkladove mapy:</h3>
+          <div id="main">
+          
+             
+            
+             
+              <div id="child1">
+                <h3>Podkladové mapy:</h3>
+                <ul>
               <li>
-                <p class="layerbutton"  onclick="setLayer('maptiler')">Open street map</p>
+                <p class="layerbutton" id="baseMap" onclick="setLayer('maptiler')">Open street map</p>
               </li>
               <li>
-                <p class="layerbutton"  onclick="setLayer('orthoUGKK')">Orthophoto (UGKK)</p>
+                <p class="layerbutton" id="GoogleMaps" onclick="setLayer('GoogleMaps')">Ortofoto (Google)</p>
               </li>
               <li>
-                <p class="layerbutton"  onclick="setLayer('mapyCZ')">Orthophoto (Mapy.CZ)</p>
+                <p class="layerbutton" id="orthoUGKK" onclick="setLayer('orthoUGKK')">Ortofoto (UGKK)</p>
               </li>
               <li>
-                <p class="layerbutton"  onclick="setLayer('SAZP')">Orto 2010</p>
+                <p class="layerbutton" id="mapyCZ" onclick="setLayer('mapyCZ')">Ortofoto (Mapy.CZ)</p>
               </li>
               <li>
-                <p class="layerbutton"  onclick="setLayer('orto2017')">Orto 2017 - 2019</p>
+                <p class="layerbutton" id="bing"  onclick="setLayer('bing')">Ortofoto (Bing)</p>
               </li>
-        
-              <hr>
-              <h3>Historicke mapy</h3>
+              <li>
+                <p class="layerbutton" id="freeMap" onclick="setLayer('freeMap')">Free map</p>
+              </li>
+              <li>
+                <p class="layerbutton" id="ZBGISmap" onclick="setLayer('ZBGISmap')">ZB Gis map</p>
+              </li>
+              <li>
+                <p class="layerbutton" id="SAZP" onclick="setLayer('SAZP')">Ortofoto 2010</p>
+              </li>
+              <li>
+                <p class="layerbutton" id="orto2017" onclick="setLayer('orto2017')">Ortofoto 2017 - 2019</p>
+              </li> 
+            </ul>
+
+            <i id="options" class="fas fa-bars" onclick="toggleHidden('#optionsContainer')" ></i>
+            </div>
+            <div id="child2">
+              
+              <h3>Historické mapy:</h3>
+              <ul>
+                <li>
+                  <p class="layerbutton" onclick="setLayer('ZM')">Základná mapa</p>
+                </li>
               <li>
                 <p class="layerbutton" onclick="setLayer('IVM')">I. vojenske mapovanie</p>
               </li>
@@ -79,9 +105,20 @@
               <li>
                 <p class="layerbutton" onclick="setLayer('IVVM')">IV. vojenske mapovanie</p>
               </li>
-              <i id="options" class="fas fa-bars" onclick="toggleHidden('#optionsContainer')"></i>
-
+              </ul>
+            
+              <p>
+                <label>
+                  <input class="control" type="checkbox" value="controls" onchange="setControl()" />
+                 Opacity
+                </label>
+              </p>
+              
+            </div>
+            </div>
+            
         <div id="optionsContainer" class="options" hidden>
+          <div id="optionsChild1">
             <p>
               <label>
                 <input  class="overlay" type="checkbox" value="Nazvoslovie"  />
@@ -102,6 +139,12 @@
             </p>
             <p>
               <label>
+                <input class="overlay" type="checkbox" value="DMR"  />
+               DMR (UGKK)
+              </label>
+            </p>
+            <p>
+              <label>
                 <input class="overlay" type="checkbox" value="Lidar"  />
                Tieňovaný model (Lidar)
               </label>
@@ -112,7 +155,8 @@
                Tieňovaný model (Global)
               </label>
             </p>
-            <hr>
+          </div>
+          <div id="optionsCHild2">
             <p>
               <label>
                 <input class="control" type="checkbox" value="controls" onchange="setControl()" />
@@ -120,12 +164,13 @@
               </label>
             </p>
             <label>
-              <input class="control" type="checkbox" value="timeline" onchange="setControl()" />
+              <input class="control"  type="checkbox" value="timeline" onchange="setControl()" />
              Timeline
             </label>
           </p>
+        </div>
           </div>
-      </ul>
+        </div>
     </div>
 
 
@@ -138,7 +183,8 @@
     </div>
 
     <div id="timeline" hidden >
-      <input type="range" id="slider" name="range" min="0" max="100" value="0" step="10">
+      <input type="range" id="slider" name="range" min="0" max="10" step="1" value="0"  >
+      
       <div id="selector">
         <div id="selectValue"></div>
         <div id="selectBtn"></div>

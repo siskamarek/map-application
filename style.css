@@ -57,9 +57,10 @@
     padding: 0px;
     z-index: 2;
     border-radius: 0.25rem;
-    display:flex;
+    display: flex;
     padding: 1rem;
     flex-direction: column;
+    
 }
 
 /*ul {
@@ -95,6 +96,41 @@
 
 #selected {
     color: crimson;
+}
+
+#baseMaps {
+    color:rgb(36, 94, 160);
+}
+
+#main{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+#child1{
+    padding: 10px;
+    padding-right: 40px;
+    border-right: 4px solid rgb(11, 101, 124);
+}
+#child2{
+    padding: 10px;
+    padding-left: 40px;
+}
+
+#optionsContainer{
+    padding: 20px;
+
+}
+
+#optionsChild1{
+    border-bottom: 2px solid rgb(11, 101, 124);
+    
+}
+
+#options{
+    padding: 10px;
 }
 
 
