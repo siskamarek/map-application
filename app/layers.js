@@ -27,9 +27,10 @@ var basemaps = {
   ),
   mapyCZ: L.tileLayer("https://mapserver.mapy.cz/bing/{z}-{x}-{y}"),
 
-  SAZP: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service?",
+  orto2010: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service?",
   {
     layers: "ortofoto_2010",
+    crs: L.CRS.EPSG4326,
     format:"image/png",
     transparent: true,
   }),
@@ -45,15 +46,25 @@ var basemaps = {
     layers: "1,2,3",
     format: "image/png",
     transparent: true,
+    pane: "ZM",
   }),
 
-  IVM: '',
+  IVM: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service", {
+    layers: "sazp_vojenske_mapovanie_I",
+    crs: L.CRS.EPSG4326,
+    format: "image/png",
+    transparent: true,
+    pane: "IVM",
+  }),
 
   IIVM: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
   {
     dpiMode: 7,
     format: 'image/png',
+    transparent: true,
     layers: "sazp_vojenske_mapovanie_II",
+    crs: L.CRS.EPSG4326,
+    pane: "IIVM"
   }),
 
   IIIVM: L.tileLayer.wms(
@@ -62,15 +73,39 @@ var basemaps = {
       layers: "1,2,3",
       format: "image/png",
       transparent: true,
+      pane: "IIIVM",
     }
   ),
 
-  IVVM: L.tileLayer.wms("https://zbgisws.skgeodesy.sk/hm_III_vm/service.svc/get?",
+  IIIVMr: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
   {
-    layers: "1,2,3",
+    layers: "sazp_vojenske_mapovanie_IIIr",
+    crs: L.CRS.EPSG4326,
     format: 'image/png',
     transparent: true,
+    pane: "IIIVMr",
   }),
+
+  IVVM: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
+  {
+    layers: "sazp_vojenske_mapovanie_IV",
+    crs: L.CRS.EPSG4326,
+    format: 'image/png',
+    transparent: true,
+    pane: "IVVM",
+  }),
+
+  IVVMr: L.tileLayer.wms("http://tiles.geop.sazp.sk/base/service",
+  {
+    layers: "sazp_vojenske_mapovanie_IVr",
+    crs: L.CRS.EPSG4326,
+    format: 'image/png',
+    transparent: true,
+    pane: "IVVMr",
+  }),
+
+
+  NONE: '',
 };
 
 
@@ -81,6 +116,7 @@ var overlays = {
     layers: "0,1,2",
     format: "image/png",
     transparent: true,
+    pane: "DMR",
   }),
 
   Lidar: L.tileLayer("https://dmr5.tiles.freemap.sk/{z}/{x}/{y}.png"),
@@ -91,6 +127,7 @@ var overlays = {
       layers: "0,1,2,3,4,5",
       format: "image/png",
       transparent: true,
+      pane: "Nazvoslovie",
     }
   ),
 
@@ -100,6 +137,7 @@ var overlays = {
       layers: "2,3,4,5,6,7,8,11,12,13,14,15",
       format: "image/png",
       transparent: true,
+      pane:"ParcelyC",
     }
   ),
 
@@ -109,6 +147,7 @@ var overlays = {
       layers: "0,3,4,5",
       format: "image/png",
       transparent: true,
+      pane: "ParcelyE",
     }
   ),
 
@@ -118,6 +157,7 @@ var overlays = {
         layers: "World Hillshade",
         format: "image/png",
         transparent: true,
+        pane: "ESRI",
       }
   ),
 };

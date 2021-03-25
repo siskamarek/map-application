@@ -10,6 +10,7 @@ function createMap() {
   L.control.scale().addTo(map);
   createMeasureTool();
   createOpacityTool();
+  createTimeLine();
 }
 
 function getMap() {

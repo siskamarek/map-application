@@ -18,6 +18,7 @@
     border-radius: 0.25rem;
     border: 2px solid rgb(0 0 0 / 25%);
     box-shadow: 0 0 2px rgb(0 0 0 / 25%);
+
 }
 
 #input {
@@ -67,13 +68,13 @@
     background: rgb(64 186 300 / 25%);*/
    
 
-.layerbutton{
+.layerbutton, .overlayMap{
     display: block;
     cursor: pointer;
     box-sizing: 100%;
        
 }
-.layerbutton:hover{
+.layerbutton:hover, .overlayMap:hover{
    background-color:rgb(186 213 232 / 50%);
     
 }
@@ -94,12 +95,9 @@
     transform: translateY(1.5px);
 }
 
-#selected {
-    color: crimson;
-}
 
-#baseMaps {
-    color:rgb(36, 94, 160);
+#maptiler {
+    color: "blue";
 }
 
 #main{
@@ -107,6 +105,10 @@
     flex-direction: row;
 }
 
+#NONE{
+    color: rgba(197, 82, 82, 0.979);
+    font-style: italic;
+}
 
 
 #child1{
@@ -118,6 +120,7 @@
     padding: 10px;
     padding-left: 40px;
 }
+    
 
 #optionsContainer{
     padding: 20px;
@@ -133,4 +136,9 @@
     padding: 10px;
 }
 
+#selectLayer:hover{
+background-color: cornflowerblue;
+border-radius: 50%;
+cursor: pointer;
+}
 

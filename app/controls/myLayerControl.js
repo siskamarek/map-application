@@ -1,18 +1,74 @@
-//baselayers
+//open baselayers
 var activelayer;
+var button;
 function setLayer(layerName){
    
    if(activelayer!=null && activelayer!=''){
       map.removeLayer(activelayer)
+      button.style.color="black";
    };
       activelayer=basemaps[layerName];
       var baseLayer = basemaps.maptiler;
       var baseMap = L.layerGroup([baseLayer, activelayer]);
+      button= document.getElementById(layerName);
+      button.style.color="blue";
       map.addLayer(baseMap);
+      
    };
+ 
+//open overlayMaps
+var activeOverlayMap;
+var element;
+  
+   //open maps
+function setOverlayMap(id){
+    //close map before
+   if(activeOverlayMap!=null && activeOverlayMap!=''){
+      map.removeLayer(activeOverlayMap);
+      
+      if(id!="NONE"){element.style.color="black"};
+      document.getElementById("NONE").style.color= "rgba(197, 82, 82, 0.979)";
+   };
+      //open new map
+   
+   
+   if(id!="NONE"){
+   
+   activeOverlayMap=basemaps[id];
+
+   map.createPane(id);
+   map.getPane(id).style.zIndex=649;
+   activeOverlayMap.addTo(map);
+   element=document.getElementById(id);
+   element.style.color = "blue";
+   
+         //dragLayerButon has occured
+   dragLayer.removeAttribute('hidden');
+   }
+   else{dragLayer.setAttribute('hidden', true);
+   element.style.color="black";
+   document.getElementById(id).style.color="red";
+   };
+   
+    
+};
+
+
+
+//click event on layers
+/*document.addEventListener("DOMContentLoaded", function(event){
+   const overlayMaps=document.getElementsByClassName("overlayMap");
+   console.log(11);
+   for(const overlayMap of overlayMaps){
+      overlayMap.addEventListener("click", openOverlayMap)
+      
+   }
+})*/
    
 
 
+
+//toggle hidden
    
 function toggleHidden(selector) {
     const optionsDiv = document.querySelector(selector);
@@ -28,6 +84,8 @@ function toggleHidden(selector) {
 
  function setOverlay(layerName)
  {
+   map.createPane(layerName);
+   map.getPane(layerName).style.zIndex=650;
    map.addLayer(overlays[layerName]);
  }
 
@@ -45,9 +103,9 @@ function toggleHidden(selector) {
  }
  console.log(1);
  document.addEventListener('DOMContentLoaded', function(event)  {
-    console.log(2)
+    
     const checkboxes = document.getElementsByClassName("overlay");
-    console.log(checkboxes);
+   
    //the event occurred
    
 	for (const checkbox of checkboxes) {
@@ -57,17 +115,33 @@ function toggleHidden(selector) {
  })
 
 
+ 
+//set control
  function onControlChange(event){
    const id = event.target.value;
    const checked = event.target.checked;
-   const timeline = document.getElementById("timeline");
+//open group layer control
+if(id=="groups" && checked){
+   const groups=document.getElementsByClassName(id);
+   const opacitySelect = document.getElementById("selectLayer");
+   opacitySelect.hidden=false;
+   for(const group of groups){group.hidden=false;};
+  ;}
+else if(id=="groups" && !checked){
+   const groups=document.getElementsByClassName(id)
+   const opacitySelect = document.getElementById("selectLayer");
+   opacitySelect.hidden=true;
+   for(const group of groups){group.hidden=true;};
+};
+
+//open another controls (timeline, opacity)
    if(checked){
       document.getElementById(id).hidden=false;
    }
    else{
       document.getElementById(id).hidden=true;
    };
-  }
+  };
 
  function setControl (){
    
@@ -79,3 +153,5 @@ function toggleHidden(selector) {
      };
      document.addEventListener('DOMContentLoaded', setControl);
      
+
+   

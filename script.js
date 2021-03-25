@@ -1,1 +1,4 @@
 createMap();
+
+//openSelectedLayers();
+

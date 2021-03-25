@@ -31,6 +31,9 @@
     <script src="app/controls/setView.js"></script>
     <script src="app/controls/layerControl.js"></script>
     <script src="app/controls/myLayerControl.js"></script>
+    <script src="app/controls/setTool.js"></script>
+    <script src="app/controls/timeline.js"></script>
+    <script src="app/controls/layerGroup.js"></script>
         
   </head>
   <body>
@@ -56,7 +59,7 @@
                 <h3>Podkladové mapy:</h3>
                 <ul>
               <li>
-                <p class="layerbutton" id="baseMap" onclick="setLayer('maptiler')">Open street map</p>
+                <p class="layerbutton" id="maptiler" onclick="setLayer('maptiler')">Open street map</p>
               </li>
               <li>
                 <p class="layerbutton" id="GoogleMaps" onclick="setLayer('GoogleMaps')">Ortofoto (Google)</p>
@@ -77,7 +80,7 @@
                 <p class="layerbutton" id="ZBGISmap" onclick="setLayer('ZBGISmap')">ZB Gis map</p>
               </li>
               <li>
-                <p class="layerbutton" id="SAZP" onclick="setLayer('SAZP')">Ortofoto 2010</p>
+                <p class="layerbutton" id="orto2010" onclick="setLayer('orto2010')">Ortofoto 2010</p>
               </li>
               <li>
                 <p class="layerbutton" id="orto2017" onclick="setLayer('orto2017')">Ortofoto 2017 - 2019</p>
@@ -89,28 +92,54 @@
             <div id="child2">
               
               <h3>Historické mapy:</h3>
+
               <ul>
                 <li>
-                  <p class="layerbutton" onclick="setLayer('ZM')">Základná mapa</p>
+                <p class="overlayMap" id="ZM" onclick="setOverlayMap('ZM')">Základná mapa </p><input type="checkbox" class="groups" value="ZM" value="ZM" hidden>
                 </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('IVM')">I. vojenske mapovanie</p>
+                <p class="overlayMap" id="IVM" onclick="setOverlayMap('IVM')">I. vojenske mapovanie </p><input type="checkbox" class="groups" value="IVM" hidden>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('IIVM')">II. vojenske mapovanie</p>
+                <p class="overlayMap" id="IIVM" onclick="setOverlayMap('IIVM')">II. vojenske mapovanie <input type="checkbox" class="groups" value="IIVM" hidden></p>
               </li>
               <li>
-                <p class="layerbutton"  onclick="setLayer('IIIVM')">III. vojenske mapovanie</p>
+                <p class="overlayMap" id="IIIVM"onclick="setOverlayMap('IIIVM')" >III. vojenske mapovanie<input type="checkbox" class="groups" value="IIIVM" hidden></p>
               </li>
               <li>
-                <p class="layerbutton" onclick="setLayer('IVVM')">IV. vojenske mapovanie</p>
+                <p class="overlayMap" id="IIIVMr"onclick="setOverlayMap('IIIVMr')" >III. VM - reambulované<input type="checkbox" class="groups" value="IIIVMr" hidden></p>
+              </li>
+              <li>
+                <p class="overlayMap" id="IVVM" onclick="setOverlayMap('IVVM')">IV. vojenske mapovanie<input type="checkbox" class="groups" value="IVVM" hidden></p>
+              </li>
+              <li>
+                <p class="overlayMap" id="IVVMr"onclick="setOverlayMap('IVVMr')" >IV. VM - reambulované<input type="checkbox" class="groups" value="IVVMr" hidden></p>
+              </li>
+              <li>
+                <p class="overlayMap" id="NONE"onclick="setOverlayMap('NONE')" >None</p>
               </li>
               </ul>
+              
             
               <p>
                 <label>
                   <input class="control" type="checkbox" value="controls" onchange="setControl()" />
                  Opacity
+                </label>
+               
+              </p>
+
+              <p>
+                <label>
+                  <input class="control" type="checkbox" value="groups" onchange="setControl()" />
+                 Layer Group
+                </label>
+              </p>
+
+              <p id="dragLayer" hidden>
+                <label>
+                  <input id="tool" type="checkbox" value="tools" onchange="setTool()" />
+                 Drag layer
                 </label>
               </p>
               
@@ -157,6 +186,7 @@
             </p>
           </div>
           <div id="optionsCHild2">
+            
             <p>
               <label>
                 <input class="control" type="checkbox" value="controls" onchange="setControl()" />
@@ -180,6 +210,7 @@
     <div id="controls" hidden>
       <input type="range" id="opacity" step="0.1" min="0" max="1" value="1" />
       <label for="volume">Opacity</label>
+      <span id="selectLayer" hidden><i class="fas fa-dot-circle"></i></span>
     </div>
 
     <div id="timeline" hidden >
@@ -193,6 +224,6 @@
 
     <script src="script.js"></script>
     <script src="app/controls/opacity.js"></script>
-    <script src="app/controls/timeline.js"></script>
+    
   </body>
 </html>
